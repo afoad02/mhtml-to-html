@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MHTML to HTML Converter</title>
+</head>
+<body>
+    <h1>MHTML to HTML Converter</h1>
+    <input type="file" id="fileInput" accept=".mhtml">
+    <button onclick="convertMHTML()">Convert</button>
+    <br><br>
+    <textarea id="output" rows="20" cols="100"></textarea>
+
+    <script>
+        function convertMHTML() {
+            const fileInput = document.getElementById('fileInput');
+            const output = document.getElementById('output');
+
+            if (fileInput.files.length === 0) {
+                alert('Please select an MHTML file');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const mhtmlContent = e.target.result;
+                // Here you would parse the MHTML content and extract the HTML part.
+                // For simplicity, we display it as plain text.
+                output.value = mhtmlContent; // Just display raw content for now
+            };
+
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+</html>
